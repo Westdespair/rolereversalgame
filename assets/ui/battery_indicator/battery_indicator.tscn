@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg3nx233ikllt"]
+
+[ext_resource type="Script" path="res://assets/ui/battery_indicator/battery_indicator.gd" id="1_6edqq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lhv7"]
+bg_color = Color(0.6, 0.6, 0.6, 0.223529)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1bn5"]
+bg_color = Color(0.6, 0.6, 0.6, 0.223529)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lan6e"]
+bg_color = Color(1, 0.227998, 0.188022, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Battery_indicator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6edqq")
+
+[node name="BG_panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 53.0
+offset_bottom = 222.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0lhv7")
+
+[node name="Tip_panel" type="Panel" parent="BG_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7.5
+offset_top = -7.0
+offset_right = 7.5
+offset_bottom = 4.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r1bn5")
+
+[node name="Margin" type="MarginContainer" parent="BG_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Indicator" type="Panel" parent="BG_panel/Margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lan6e")
