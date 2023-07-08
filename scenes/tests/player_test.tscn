@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsld8gvr8o5vg"]
+
+[ext_resource type="PackedScene" uid="uid://cio553kwbufmv" path="res://scenes/player/Player.tscn" id="1_xnp6y"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bs7yj"]
+frequency = 0.47
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_owgic"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_bs7yj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wg27"]
+albedo_color = Color(0.27451, 0.27451, 0.294118, 1)
+albedo_texture = SubResource("NoiseTexture2D_owgic")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vo1e8"]
+material = SubResource("StandardMaterial3D_8wg27")
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5oo5x"]
+size = Vector3(10.0623, 0.0765862, 10.0623)
+
+[node name="player_test" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_vo1e8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0376352, 0)
+shape = SubResource("BoxShape3D_5oo5x")
+
+[node name="Player" parent="." instance=ExtResource("1_xnp6y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.02021, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.999542, 0.0130216, -0.0273316, -0.0222908, 0.294353, 0.955437, 0.0204865, 0.955608, -0.293928, -0.47721, 9.55024, -2.54082)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.979399, 0.0100017, -0.201685, 0.200552, 0.0684191, 0.977291, 0.0235736, -0.997607, 0.0650038, -0.136414, 12.8432, 0.329069)
+shadow_enabled = true
